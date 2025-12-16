@@ -1,0 +1,5 @@
+name: 'YSE Nodeform Ouroboros'
+type: module
+description: 'Returns node form back to itself after saving regardless of destination'
+core_version_requirement: ^10 || ^11
+package: YSE WebOps

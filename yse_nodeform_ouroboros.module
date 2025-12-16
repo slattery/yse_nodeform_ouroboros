@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file
+ * Custom module for node form redirects.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_alter().
+ */
+function yse_nodeform_ouroboros_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // TODO: Hardcoded and gross.  make this work for other content types...
+  if ($form_id == 'node_yse3_issue_form' ) {
+    $form['actions']['submit']['#submit'][] = '_yse_nodeform_ouroboros_redirect_to_edit_form';
+  }
+}
+
+/**
+ * Custom submit handler to redirect back to the edit form.
+ */
+function _yse_nodeform_ouroboros_redirect_to_edit_form(array $form, FormStateInterface $form_state) {
+  $node = $form_state->getFormObject()->getEntity();
+  
+  // Clear any destination parameter
+  $request = \Drupal::request();
+  if ($request->query->has('destination')) {
+    $request->query->remove('destination');
+  }
+  
+  // Redirect back to the edit form
+  $form_state->setRedirect('entity.node.edit_form', ['node' => $node->id()]);
+}

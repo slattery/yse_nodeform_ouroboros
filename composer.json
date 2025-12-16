@@ -1,0 +1,6 @@
+{
+  "name": "slattery/yse_nodeform_ouroboros",
+  "description": "Eternal return to the node form after saving",
+  "type": "drupal-custom-module",
+  "license": "GPL-2.0-or-later"
+}
